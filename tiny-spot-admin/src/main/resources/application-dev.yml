@@ -1,0 +1,54 @@
+#swagger开启配置
+swagger:
+  show: true
+
+# 数据库、redis配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tiny_spot_origin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: '123456'
+  redis:
+    host: localhost # Redis服务器地址
+    port: 6379 # Redis服务器连接端口
+    password: '' #Redis服务器连接密码（默认为空）
+    database: 6 # Redis数据库索引（默认为0）
+
+#oss配置
+oss:
+  type: local # 文件存储方式 目前： local (本地)或 minio
+  local:
+    path: '/etc/nginx/static'  # 文件上传地址，需要配置 nginx
+    prefix: 'https://xxx.xxx.com/static'  # 文件URL前缀
+  minio:
+    access-key: 'minio生成的access-key'
+    secret-key: 'minio生成的secret-key'
+    bucket: test  # 桶名称
+    end-point: 'https://xxx.xxx.com' # minio服务地址
+
+# oAuth2.0配置
+oauth2:
+  apps:
+    gitee:
+      end-point: 'https://gitee.com'
+      end-point-api:
+      client-id: 'Gitee分配的client-id'
+      client-secret: 'Gitee分配的client-secret'
+      grant-type: 'authorization_code'
+      redirect-uri: '重定向地址'
+    github:
+      end-point: 'https://github.com'
+      end-point-api: 'https://api.github.com'
+      client-id: 'github分配的client-id'
+      client-secret: 'github分配的client-secret'
+      grant-type: 'authorization_code'
+      redirect-uri: '重定向地址'
+    qq:
+      end-point: 'https://graph.qq.com'
+      end-point-api:
+      client-id: 'qq分配的client-id'
+      client-secret: 'qq分配的client-secret'
+      grant-type: 'authorization_code'
+      redirect-uri: '重定向地址'

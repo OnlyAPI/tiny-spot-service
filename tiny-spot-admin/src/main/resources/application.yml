@@ -1,0 +1,36 @@
+server:
+  port: 9999
+  shutdown: graceful
+  servlet:
+    context-path: /admin-api
+
+spring:
+  profiles:
+    active: dev
+
+logging:
+  config: classpath:logback.xml
+  level:
+    root: INFO
+
+#安全路径白名单
+secure:
+  ignored:
+    urls:
+      - /swagger-ui/
+      - /swagger-resources/**
+      - /**/v2/api-docs
+      - /**/*.html
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /favicon.ico
+      - /actuator/**
+      - /druid/**
+      - /user/login
+      - /captcha/**
+      - /file/**
+      - /error
+      - /oAuth2/**
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
