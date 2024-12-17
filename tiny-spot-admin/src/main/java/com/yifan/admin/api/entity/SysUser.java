@@ -18,10 +18,10 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("ts_sys_user")
-@ApiModel(value="sys_user对象", description="用户表")
+@ApiModel(value = "sys_user对象", description = "用户表")
 public class SysUser implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;

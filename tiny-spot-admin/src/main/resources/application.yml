@@ -2,7 +2,7 @@ server:
   port: 9999
   shutdown: graceful
   servlet:
-    context-path: /admin-api
+    context-path: /api
 
 spring:
   profiles:

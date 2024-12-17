@@ -3,7 +3,6 @@ package com.yifan.admin.api.controller;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.yifan.admin.api.service.*;
 import com.yifan.admin.api.annotition.CaptchaCheck;
 import com.yifan.admin.api.context.RequestContext;
 import com.yifan.admin.api.entity.SysMenu;
@@ -14,7 +13,7 @@ import com.yifan.admin.api.model.params.CommonLoginParam;
 import com.yifan.admin.api.model.params.UpdateUserInfoParam;
 import com.yifan.admin.api.model.params.UpdateUserPwdParam;
 import com.yifan.admin.api.result.BaseResult;
-import com.yifan.admin.api.service.CacheService;
+import com.yifan.admin.api.service.*;
 import com.yifan.admin.api.service.storage.FileStorageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,14 +52,21 @@ public class LoginController {
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @CaptchaCheck(value = "login")
-    public BaseResult<String> login(@Validated @RequestBody CommonLoginParam umsAdminLoginParam) {
+    public BaseResult<Map<String, Object>> login(@Validated @RequestBody CommonLoginParam umsAdminLoginParam) {
         SysUser sysAdmin = userService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
         if (sysAdmin == null) {
             return BaseResult.validateFailed("用户名或密码错误");
         }
         String token = cacheService.generateToken(sysAdmin);
         loginLogService.insertAdminLoginLog(sysAdmin.getId());
-        return BaseResult.ok(token);
+
+        sysAdmin.setPassword("******");
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInfo", sysAdmin);
+        data.put("token", token);
+
+        return BaseResult.ok(data);
     }
 
 //    @ApiOperation(value = "注册")
