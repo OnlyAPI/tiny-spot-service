@@ -58,6 +58,7 @@ public class SysUser implements Serializable {
     private Date createTime;
 
     @ApiModelProperty(value = "最后登录时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date loginTime;
 
     @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
