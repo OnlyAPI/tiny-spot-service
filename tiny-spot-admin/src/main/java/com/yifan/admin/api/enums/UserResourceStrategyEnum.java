@@ -18,22 +18,22 @@ public enum UserResourceStrategyEnum {
     /**
      * system
      */
-    SYSTEM("system", "系统登录", ""),
+    SYSTEM("System", "系统登录", ""),
 
     /**
      * QQ
      */
-    QQ("qq", "QQ登录", "qqLoginStrategy"),
+    QQ("QQ", "QQ登录", "qqLoginStrategy"),
 
     /**
      * Gitee
      */
-    GITEE("gitee", "Gitee登录", "giteeLoginStrategy"),
+    GITEE("Gitee", "Gitee登录", "giteeLoginStrategy"),
 
     /**
      * Github
      */
-    GITHUB("github", "Github登录", "githubLoginStrategy");
+    GITHUB("Github", "Github登录", "githubLoginStrategy");
 
 
     /**
