@@ -88,6 +88,9 @@ public class UploadRecordAspect {
     }
 
     private int getImageSize(String imageUrl) throws IOException {
+        if (!imageUrl.contains("http")) {
+            return 0;
+        }
         URL url = new URL(imageUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("HEAD");

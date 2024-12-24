@@ -7,6 +7,12 @@ server:
 spring:
   profiles:
     active: dev
+  servlet:
+    multipart:
+      # 设置最大文件大小（以字节为单位）
+      max-file-size: 20MB
+      # 设置最大请求大小（以字节为单位），可以与 max-file-size 相同或更大
+      max-request-size: 20MB
 
 logging:
   config: classpath:logback.xml
