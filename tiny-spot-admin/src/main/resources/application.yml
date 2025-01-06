@@ -38,5 +38,6 @@ secure:
       - /file/**
       - /error
       - /oAuth2/**
+      - /open/**
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml

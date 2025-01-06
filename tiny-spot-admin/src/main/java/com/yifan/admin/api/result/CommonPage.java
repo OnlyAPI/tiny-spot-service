@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Data
 public class CommonPage<T> {
 
-    private long pageNum = 0;
+    private long pageNum = 1;
 
     private long pageSize = 10;
 
