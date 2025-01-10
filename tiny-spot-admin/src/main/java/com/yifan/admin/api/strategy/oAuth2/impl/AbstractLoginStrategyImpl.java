@@ -22,6 +22,7 @@ import com.yifan.admin.api.service.pwdEncoder.PasswordEncoder;
 import com.yifan.admin.api.strategy.oAuth2.SocialLoginStrategy;
 import com.yifan.admin.api.utils.DateTimeUtil;
 import com.yifan.admin.api.utils.UuidUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,7 @@ import java.util.Objects;
  * 抽象登录模板
  */
 @Service
+@Slf4j
 public abstract class AbstractLoginStrategyImpl implements SocialLoginStrategy {
 
     @Autowired
@@ -57,7 +59,13 @@ public abstract class AbstractLoginStrategyImpl implements SocialLoginStrategy {
     public String login(CodeDTO data) {
         SysUser user;
         // 获取token
-        SocialTokenDTO socialToken = getSocialToken(data);
+        SocialTokenDTO socialToken;
+        try {
+            socialToken = getSocialToken(data);
+        }catch (Exception e){
+            log.error("error", e);
+            throw new ApiException(ResultCode.OAUTH2_LOGIN_ERROR.getCode(), "授权已过期，请重新授权");
+        }
         // 获取用户信息
         SocialUserInfoDTO socialUserInfoVO = getSocialUserInfo(socialToken);
         // 判断是否已注册
