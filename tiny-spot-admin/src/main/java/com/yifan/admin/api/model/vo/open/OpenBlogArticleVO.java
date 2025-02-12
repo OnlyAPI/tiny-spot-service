@@ -28,8 +28,11 @@ public class OpenBlogArticleVO {
     @ApiModelProperty(value = "内容")
     private String content;
 
-    @ApiModelProperty(value = "点击量")
+    @ApiModelProperty(value = "点击量/阅读量")
     private int hits;
+
+    @ApiModelProperty(value = "收藏量")
+    private int collect;
 
     @ApiModelProperty(value = "图片")
     private String image;

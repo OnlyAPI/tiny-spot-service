@@ -37,6 +37,9 @@ public class BlogArticle {
     @ApiModelProperty(value = "点击量")
     private int hits;
 
+    @ApiModelProperty(value = "收藏量")
+    private int collect;
+
     @ApiModelProperty(value = "允许评论 0：不允许 1：允许")
     private int allowComment;
 
