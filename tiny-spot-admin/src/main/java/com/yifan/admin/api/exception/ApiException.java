@@ -28,11 +28,11 @@ public class ApiException extends RuntimeException {
         return errorCode;
     }
 
-    public static ApiException newCheckFaidException() {
-        return newCheckFaidException(ResultCode.TOKEN_CHECK_FAILED.getMsg());
+    public static ApiException tokenExpiredException() {
+        return new ApiException(ResultCode.TOKEN_EXPIRED);
     }
 
-    public static ApiException newCheckFaidException(String msg) {
-        return new ApiException(ResultCode.TOKEN_CHECK_FAILED.getCode(), msg);
+    public static ApiException tokenBlankException() {
+        return new ApiException(ResultCode.TOKEN_CHECK_FAILED);
     }
 }

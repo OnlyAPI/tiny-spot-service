@@ -12,10 +12,11 @@ public enum ResultCode {
     MEDIA_TYPE_ERROR(5004, "数据格式错误"),
     OAUTH2_LOGIN_ERROR(5005, "三方授权登录失败"),
 
-    TOKEN_CHECK_FAILED(6000, "token检查失败"),
+    TOKEN_CHECK_FAILED(6000, "请先登录"),
     FORBIDDEN(6001, "暂无权限"),
     USER_DISABLE(6002, "账户不可用"),
     USER_EXISTS(6003, "账户已存在，请登录!"),
+    TOKEN_EXPIRED(6004, "登录已过期"),
     ;
 
     private Integer code;

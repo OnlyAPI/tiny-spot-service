@@ -33,10 +33,10 @@ public class TokenInterceptor implements HandlerInterceptor {
                 request.getMethod(), request.getRemoteAddr(), token);
 
         if (StringUtils.isBlank(token)) {
-            throw ApiException.newCheckFaidException("token不能为空");
+            throw ApiException.tokenBlankException();
         }
         if (!sysCacheService.checkToken(token)) {
-            throw ApiException.newCheckFaidException();
+            throw ApiException.tokenExpiredException();
         }
 
         SysUser sysAdmin = sysCacheService.getUser(token);
