@@ -13,10 +13,10 @@ import com.yifan.admin.api.model.vo.open.OpenBlogTagVO;
 import com.yifan.admin.api.result.BaseResult;
 import com.yifan.admin.api.result.CommonPage;
 import com.yifan.admin.api.service.BlogArticleService;
-import com.yifan.admin.api.service.BlogArticleTagService;
 import com.yifan.admin.api.service.BlogTagService;
 import com.yifan.admin.api.service.SysUserService;
 import io.swagger.annotations.Api;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +46,9 @@ public class OpenBlogArticleController {
         queryWrapper.eq(BlogArticle::getStatus, StatusEnum.USABLE.getStatus());
         queryWrapper.orderByAsc(BlogArticle::getSort);
         queryWrapper.orderByDesc(BlogArticle::getCreateTime);
+        if (StringUtils.isNotBlank(param.getKeyword())) {
+            queryWrapper.like(BlogArticle::getTitle, param.getKeyword());
+        }
 
         Page<BlogArticle> paged = blogArticleService.page(page, queryWrapper);
 
